@@ -80,8 +80,10 @@ publishing {
 	}
 	repositories {
 		maven {
-			username = System.getEnv("MAVEN_USERNAME")
-			password = System.getEnv("MAVEN_PASSWORD")
+			credentials {
+				username = System.getenv("MAVEN_USERNAME")
+				password = System.getenv("MAVEN_PASSWORD")
+			}
 
 			url = version.endsWith('SNAPSHOT') ?
 					'https://s01.oss.sonatype.org/content/repositories/snapshots/'
