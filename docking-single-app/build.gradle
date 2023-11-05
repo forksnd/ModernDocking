@@ -74,9 +74,9 @@ publishing {
 	repositories {
 		maven {
 			credentials {
-				if (System.getenv("GITHUB_ACTOR") != null && System.getenv("GITHUB_TOKEN") != null) {
-					username = System.getEnv("GITHUB_ACTOR")
-					password = System.getEnv("GITHUB_TOKEN")
+				if (System.getenv("MAVEN_USERNAME") != null && System.getenv("MAVEN_PASSWORD") != null) {
+					username = System.getEnv("MAVEN_USERNAME")
+					password = System.getEnv("MAVEN_PASSWORD")
 				}
 				else {
 					if (project.hasProperty('sonatypeUsername')) {
