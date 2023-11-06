@@ -17,6 +17,8 @@ repositories {
     maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
 }
 
+version = "0.10.0-SNAPSHOT"
+
 publishing {
 	repositories {
 		maven {
