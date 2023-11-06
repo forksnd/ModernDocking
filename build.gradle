@@ -17,34 +17,17 @@ repositories {
     maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
 }
 
-sourceSets.main.java.srcDirs = ['src']
-sourceSets.test.java.srcDirs = ['test']
-sourceSets.main.resources.srcDirs = ['resources']
+publishing {
+	repositories {
+		maven {
+			credentials {
+				username = System.getenv("MAVEN_USERNAME")
+				password = System.getenv("MAVEN_PASSWORD")
+			}
 
-version = "0.10.0-SNAPSHOT"
-
-dependencies {
-    implementation project(':docking-api')
-    implementation project(':docking-ui')
-    implementation project(':docking-single-app')
-
-    implementation 'com.formdev:flatlaf:3.1.1'
-    implementation 'com.formdev:flatlaf-extras:3.1.1'
-    implementation 'com.formdev:flatlaf-intellij-themes:3.1.1'
-    implementation 'com.formdev:svgSalamander:1.1.4'
-
-    implementation 'com.ardikars.pcap:pcap-jdk7:1.5.0'
-
-    implementation 'info.picocli:picocli:4.7.4'
-}
-
-jar {
-    manifest {
-        attributes "Main-Class": "MainFrame"
-    }
-
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+			url = version.endsWith('SNAPSHOT') ?
+					'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+					: 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+		}
+	}
 }
