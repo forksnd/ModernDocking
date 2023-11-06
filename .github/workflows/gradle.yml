@@ -24,12 +24,6 @@ jobs:
           server-password: MAVEN_PASSWORD # env variable for token in deploy
           gpg-private-key: ${{ secrets.OSSRH_SECRET_KEY }} # Value of the GPG private key to import
           gpg-passphrase: MAVEN_GPG_PASSPHRASE # env variable for GPG private key passphrase
-      - name: Install gpg secret key
-        run: |
-          # Install gpg secret key
-          cat <(echo -e "${{ secrets.OSSRH_SECRET_KEY }}") | gpg --batch --import
-          # Verify gpg secret key
-          gpg --list-secret-keys --keyid-format LONG
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@ccb4328a959376b642e027874838f60f8e596de3
       - name: Publish package
