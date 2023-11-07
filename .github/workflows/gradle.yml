@@ -29,8 +29,9 @@ jobs:
           # Install gpg secret key
           cat <(echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}") | gpg --batch --import
           # Verify gpg secret key
-          gpg --list-secret-keys --keyid-format LONG
-          gpg --pinentry-mode=loopback --allow-loopback-pinentry --keyring secring.gpg --export-secret-key       E83400FDCAE1DE9531EDA5A0D9A9B2C2A07C3344 > ~/.gnupg/secring.gpg
+          gpg --list-secret-keys  --keyid-format LONG
+          export GPG_TTY=$(tty)
+          gpg --keyring secring.gpg --export-secret-key       E83400FDCAE1DE9531EDA5A0D9A9B2C2A07C3344 > ~/.gnupg/secring.gpg
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@ccb4328a959376b642e027874838f60f8e596de3
       - name: Publish package
