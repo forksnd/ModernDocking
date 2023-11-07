@@ -22,6 +22,7 @@ version = "0.10.0-SNAPSHOT"
 publishing {
 	repositories {
 		maven {
+			name = "OSSRH"
 			credentials {
 				username = System.getenv("MAVEN_USERNAME")
 				password = System.getenv("MAVEN_PASSWORD")
