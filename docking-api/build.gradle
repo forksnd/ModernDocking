@@ -76,6 +76,8 @@ publishing {
 			credentials {
 				username = System.getenv("MAVEN_USERNAME")
 				password = System.getenv("MAVEN_PASSWORD")
+
+				println System.getenv("MAVEN_USERNAME")
 			}
 
 			url = version.endsWith('SNAPSHOT') ?
