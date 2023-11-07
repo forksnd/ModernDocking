@@ -35,7 +35,7 @@ jobs:
       - name: Publish package
         uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
         with:
-          arguments: publish -Psigning.secretKeyRingFile=~/runner/.gnupg/secring.gpg
+          arguments: -Psigning.secretKeyRingFile=~/runner/.gnupg/secring.gpg publish
         env:
           USERNAME: ${{ secrets.OSSRH_USERNAME }}
           PASSWORD: ${{ secrets.OSSRH_TOKEN }}
